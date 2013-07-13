@@ -6,7 +6,6 @@ module Gnunet
 
     def self.unpack(str)
       new(unpack_fields(str))
-
     end
 
     #resturn a hash

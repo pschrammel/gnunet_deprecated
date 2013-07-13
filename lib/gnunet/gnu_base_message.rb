@@ -68,16 +68,16 @@ module Gnunet
         when :u16
           lambda { |str| [str.unpack('n'), str[2, -1]] }
         when :u32
-          lambda { |str| [str.unpack('n'), str[4, -1]] }
+          lambda { |str| [str.unpack('N'), str[4, -1]] }
         when :u64
-          lambda { |str| [str.unpack('n'), str[8, -1]] }
+          lambda { |str| [str.unpack('Q'), str[8, -1]] }
         when :timestamp
-          lambda { |str| [str.unpack('n'), str[8, -1]] }
+          lambda { |str| [str.unpack('Q'), str[8, -1]] }
         when :string
           raise "no length given" unless @options.has_key?(:length)
           lambda { |str|
             if @options[:length] == false
-              str
+              [str,""]
             else
               [str[0..@options[:length]-1], [@options[:length], -1]]
             end
@@ -92,7 +92,7 @@ module Gnunet
     end
 
     def unpack(msg)
-      unpacker.call(value)
+      unpacker.call(msg)
     end
   end#GnuBaseMessage
 
