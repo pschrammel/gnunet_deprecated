@@ -8,10 +8,15 @@ module Gnunet
 
         #TID of the tunnel
         attr_accessor :tid
-        attr_accessor :data #something
+        attr_accessor :data
 
         def type
           275
+        end
+
+        def size
+          #2 for size, 2 for type, 4 for tid
+          8+data.size
         end
 
 
