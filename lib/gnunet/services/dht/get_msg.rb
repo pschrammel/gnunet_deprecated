@@ -4,9 +4,9 @@ module Gnunet
       class GetMsg < ::Gnunet::GnuMessage
 
 
-        add_field :desired_replication_level, :u32
         add_field :block_type,:u32
         add_field :options,:u32
+        add_field :desired_replication_level, :u32
         add_field :unique_id,:u64
         add_field :key,:string,:length => 512/8
 

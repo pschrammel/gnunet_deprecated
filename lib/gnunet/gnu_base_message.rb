@@ -94,6 +94,14 @@ module Gnunet
       def unpack(msg)
         unpacker.call(msg)
       end
+
+      def size
+        raise "size should be implemented by subclass"
+      end
+
+      def type
+        raise "type should be implemented by subclass"
+      end
     end #Field
   end #GnuBaseMessage
 end
