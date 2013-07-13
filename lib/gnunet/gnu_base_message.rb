@@ -61,39 +61,39 @@ module Gnunet
             raise "unknown type: #{type.inspect}"
         end
       end
-    end #Field
 
-    def unpacker
-      @unpacker ||= case @type
-        when :u16
-          lambda { |str| [str.unpack('n'), str[2, -1]] }
-        when :u32
-          lambda { |str| [str.unpack('N'), str[4, -1]] }
-        when :u64
-          lambda { |str| [str.unpack('Q'), str[8, -1]] }
-        when :timestamp
-          lambda { |str| [str.unpack('Q'), str[8, -1]] }
-        when :string
-          raise "no length given" unless @options.has_key?(:length)
-          lambda { |str|
-            if @options[:length] == false
-              [str,""]
-            else
-              [str[0..@options[:length]-1], [@options[:length], -1]]
-            end
-          }
-        else
-          raise "unknown type: #{type.inspect}"
+
+      def unpacker
+        @unpacker ||= case @type
+          when :u16
+            lambda { |str| [str.unpack('n'), str[2, -1]] }
+          when :u32
+            lambda { |str| [str.unpack('N'), str[4, -1]] }
+          when :u64
+            lambda { |str| [str.unpack('Q'), str[8, -1]] }
+          when :timestamp
+            lambda { |str| [str.unpack('Q'), str[8, -1]] }
+          when :string
+            raise "no length given" unless @options.has_key?(:length)
+            lambda { |str|
+              if @options[:length] == false
+                [str, ""]
+              else
+                [str[0..@options[:length]-1], [@options[:length], -1]]
+              end
+            }
+          else
+            raise "unknown type: #{type.inspect}"
+        end
       end
-    end
 
-    def pack(value)
-      packer.call(value)
-    end
+      def pack(value)
+        packer.call(value)
+      end
 
-    def unpack(msg)
-      unpacker.call(msg)
-    end
-  end#GnuBaseMessage
-
+      def unpack(msg)
+        unpacker.call(msg)
+      end
+    end #Field
+  end #GnuBaseMessage
 end
