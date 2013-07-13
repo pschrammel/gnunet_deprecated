@@ -13,7 +13,7 @@ module Gnunet
     end
 
     def to_s
-      field_store.map do |field|
+      self.class.field_store.map do |field|
         "#{field.name}: #{send(field.name).inspect}"
       end.join('; ')
     end
