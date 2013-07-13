@@ -2,6 +2,7 @@ $: << File.expand_path(File.join(File.dirname(__FILE__),'../lib'))
 
 require 'rubygems'
 require 'gnunet'
+require 'gnunet/services/dht'
 
 
 
@@ -34,7 +35,7 @@ end
 
 class GnuConnector < EventMachine::Connection
   def post_init
-    msg=PutMsg.new(:options => 0, :desired_replication_level => 3, :unique_id => 3434, :expiration => 0, :key => 'a'*64,
+    msg=::Gnunet::Services::Dht::PutMsg.new(:options => 0, :desired_replication_level => 3, :unique_id => 3434, :expiration => 0, :key => 'a'*64,
                    :data => "help!"
     )
     p msg.pack
