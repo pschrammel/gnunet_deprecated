@@ -8,7 +8,7 @@ module Gnunet
         add_field :block_type,:u32
         add_field :options,:u32
         add_field :unique_id,:u64
-        add_field :key,:string,:length => 512
+        add_field :key,:string,:length => 512/8
 
         attr_accessor :options #32 bit
         attr_accessor :desired_replication_level #32 bit

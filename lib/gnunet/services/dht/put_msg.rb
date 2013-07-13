@@ -8,7 +8,7 @@ module Gnunet
         add_field :desired_replication_level,:u32
         add_field :unique_id,:u64
         add_field :expiration,:timestamp
-        add_field :key,:string,:length => 512
+        add_field :key,:string,:length => 512/8
         add_field :data,:string,:length => false
 
 
