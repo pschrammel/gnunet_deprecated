@@ -66,13 +66,13 @@ module Gnunet
       def unpacker
         @unpacker ||= case @type
           when :u16
-            lambda { |str| [str.unpack('n'), str[2, -1]] }
+            lambda { |str| [str.unpack('n')[0], str[2..-1]] }
           when :u32
-            lambda { |str| [str.unpack('N'), str[4, -1]] }
+            lambda { |str| [str.unpack('N')[0], str[4..-1]] }
           when :u64
-            lambda { |str| [str.unpack('Q'), str[8, -1]] }
+            lambda { |str| [str.unpack('Q')[0], str[8..-1]] }
           when :timestamp
-            lambda { |str| [str.unpack('Q'), str[8, -1]] }
+            lambda { |str| [str.unpack('Q')[0], str[8..-1]] }
           when :string
             raise "no length given" unless @options.has_key?(:length)
             lambda { |str|

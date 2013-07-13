@@ -11,7 +11,9 @@ module Gnunet
     #resturn a hash
     def self.unpack_fields(msg)
       result={}
+
       field_store.inject(msg) do |msg, field|
+        #p "unpacking #{msg.inspect} -> #{field.name}"
         value, msg=field.unpack(msg)
         result[field.name]=value
         msg

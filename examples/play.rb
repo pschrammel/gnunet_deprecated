@@ -43,7 +43,7 @@ class GnuConnector < EventMachine::Connection
   end
 
   def receive_data(data)
-    puts PutResponseMsg.unpack(data)
+    puts ::Gnunet::Services::Dht::PutResponseMsg.unpack(data)
   end
 end
 

@@ -1,7 +1,7 @@
 module Gnunet
   module Services
     module Dht
-      class PutMsg < GnuMessage
+      class PutMsg < ::Gnunet::GnuMessage
 
         add_field :block_type,:u32
         add_field :options,:u32

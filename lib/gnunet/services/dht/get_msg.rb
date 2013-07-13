@@ -1,7 +1,7 @@
 module Gnunet
   module Services
     module Dht
-      class GetMsg < ::Gnunet::Services::GnuMessage
+      class GetMsg < ::Gnunet::GnuMessage
 
 
         add_field :desired_replication_level, :u32
